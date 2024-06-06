@@ -1,7 +1,7 @@
 import time
 import os
 
-def delay(seconds=0.2):
+def delay(seconds = 0.2):
     time.sleep(seconds)
     
 def clear_console():

@@ -27,8 +27,16 @@ class MainMenu(Actor):
         =================================================================
         """
         )
-        if (input("Input: ").lower() == "quit"):
+        take_input = input("Input: ").lower()
+        if (take_input == "quit"):
             if isinstance(self.owner, app.App):
                 self.owner.close_app()
-        util_library.print_hello_world()
+        elif take_input == "play":
+            util_library.print_hello_world()
+        else:
+            print("Invalid input. Please try again.")
+            util_library.delay(1)
+            util_library.clear_console()
+            self.display_main_menu()
+        
         
