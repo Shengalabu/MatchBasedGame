@@ -12,8 +12,6 @@ class App(Actor):
         super().__init__(owner)
         self.create_main_menu()
         self.display_main_menu()
-        
-        
     
     def create_main_menu(self):
         App.main_menu_inst = main_menu.MainMenu(self)
@@ -21,7 +19,7 @@ class App(Actor):
     def display_main_menu(self):
         App.main_menu_inst.display_main_menu()
     
-    def close_app():
+    def close_app(self):
         util_library.clear_console()
         print("Cleaning.")
         util_library.delay()
@@ -31,4 +29,5 @@ class App(Actor):
         util_library.clear_console()
         print("Cleaning...")
         util_library.delay()
+        util_library.clear_console()
         exit()

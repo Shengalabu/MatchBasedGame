@@ -20,15 +20,15 @@ class MainMenu(Actor):
                                     Quit       
         
             Instructions:
-                - Match the shit.
-                - Try not to shit.
-                - Win the shit.
+                - Match the question.
+                - Try not to lose.
+                - Win the game.
                 
         =================================================================
         """
         )
         if (input("Input: ").lower() == "quit"):
-            self.owner(App)
-            # Cast to App here then call close app
+            if isinstance(self.owner, app.App):
+                self.owner.close_app()
         util_library.print_hello_world()
         
