@@ -17,7 +17,7 @@ class App(Actor):
         App.main_menu_inst = main_menu.MainMenu(self)
     
     def display_main_menu(self):
-        App.main_menu_inst.display_main_menu()
+        App.main_menu_inst.display_main_menu() 
     
     def close_app(self):
         util_library.clear_console()
