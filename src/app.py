@@ -1,6 +1,6 @@
 from base_classes.actor import Actor
-from base_classes import main_menu
-from base_classes import util_library
+from menus import main_menu
+from libraries import util_library
 
 
 
