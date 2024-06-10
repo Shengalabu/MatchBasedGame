@@ -1,4 +1,4 @@
-from libraries import util_library
+from src.libraries import util_library
 
 class Actor:
     def __init__(self, owner):
