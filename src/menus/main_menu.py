@@ -1,6 +1,6 @@
-from base_classes import util_library
+from libraries import util_library
 from base_classes.actor import Actor
-import app
+import src.app as app
 
 class MainMenu(Actor):
     def __init__(self, owner):
