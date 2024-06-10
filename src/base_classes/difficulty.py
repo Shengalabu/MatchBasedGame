@@ -1,4 +1,5 @@
-from menus.question_widget_displayer import QuestionDisplay
+from src.libraries import util_library
+from src.menus.question_widget_displayer import QuestionDisplay
 from src.base_classes.level import Level
 import random
 
@@ -7,7 +8,8 @@ class Difficulty(Level):
     question_display_inst = None
     question_data = [["Color Yellow", "Filled With Pottasium", "A Fruit", "Banana"]
                     ]
-    self.display_question()
+    
+    
     
     def __init__(self, owner):
         super().__init__(owner)
@@ -18,5 +20,6 @@ class Difficulty(Level):
         Difficulty.question_display_inst = QuestionDisplay(self)
         
     def display_question(self):
+        util_library.clear_console()
         print(Difficulty.question_display_inst.display_question(Difficulty.str_difficulty, Difficulty.question_data[random.randrange(len(Difficulty.question_data))]))
         #Difficulty.question_display_inst.display_question(Difficulty.str_difficulty, Difficulty.question_data[random.randrange(len(Difficulty.question_data))])
