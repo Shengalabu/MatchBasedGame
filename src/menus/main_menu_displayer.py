@@ -1,7 +1,7 @@
+from src.base_classes.terminal_display import TerminalDisplay
 from src.libraries import util_library
-from src.base_classes.actor import Actor
 
-class MainMenu(Actor):
+class MainMenu(TerminalDisplay):
     def __init__(self, owner):
         super().__init__(owner)
         

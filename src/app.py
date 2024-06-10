@@ -1,6 +1,6 @@
 from src.difficulties.easy import EasyDifficulty
 from src.difficulties.hard import HardDifficulty
-from src.menus.main_menu import MainMenu
+from src.menus.main_menu_displayer import MainMenu
 from src.libraries import util_library
 from src.base_classes.actor import Actor
 
