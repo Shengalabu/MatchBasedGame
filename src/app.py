@@ -1,10 +1,12 @@
+from difficulties.easy import EasyDifficulty
+from difficulties.hard import HardDifficulty
 from src.menus.main_menu import MainMenu
 from src.libraries import util_library
 from src.base_classes.actor import Actor
 
 class App(Actor):
     main_menu_inst = None  # Class variable
-    game_map = None
+    game_level = None
 
     def __init__(self, owner=None):
         super().__init__(owner or self)
@@ -20,7 +22,11 @@ class App(Actor):
         else:
             print("Main menu is not created.")
             
-    def
+    def create_game_map(self, difficulty):
+        if difficulty == "easy":
+            game_level = EasyDifficulty(self)
+        if difficulty == "hard":
+            game_level = HardDifficulty(self)
     
     def close_app(self):
         util_library.clear_console()
