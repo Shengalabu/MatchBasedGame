@@ -1,4 +1,4 @@
-from base_classes.level import Difficulty
+from src.base_classes.dificulty import Difficulty
 
 
 class HardDifficulty(Difficulty):

@@ -1,12 +1,12 @@
-from difficulties.easy import EasyDifficulty
-from difficulties.hard import HardDifficulty
+from src.difficulties.easy import EasyDifficulty
+from src.difficulties.hard import HardDifficulty
 from src.menus.main_menu import MainMenu
 from src.libraries import util_library
 from src.base_classes.actor import Actor
 
 class App(Actor):
     main_menu_inst = None  # Class variable
-    game_level = None
+    game_level = None      # Class variable
 
     def __init__(self, owner=None):
         super().__init__(owner or self)

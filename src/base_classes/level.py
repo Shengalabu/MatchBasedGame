@@ -1,5 +1,5 @@
-from base_classes.actor import Actor
+from src.base_classes.actor import Actor
 
-class Map(Actor):
+class Level(Actor):
     def __init__(self, owner):
         super().__init__(owner)

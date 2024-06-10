@@ -52,8 +52,8 @@ class MainMenu(Actor):
                         
                         Select Difficulty           
                                             
-                            Easy                
-                            Hard       
+                              Easy                
+                              Hard       
 
     
     
