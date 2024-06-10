@@ -63,9 +63,9 @@ class MainMenu(Actor):
         )
         take_input = input("Input: ").lower()
         if take_input == "easy":
-            pass
+            self.owner.create_game_map("easy")
         elif take_input == "hard":
-            pass
+            self.owner.create_game_map("hard")
         else:
             self.invalid_input()
             self.display_difficulty_menu()

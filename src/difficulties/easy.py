@@ -1,4 +1,4 @@
-from src.base_classes.dificulty import Difficulty
+from src.base_classes.difficulty import Difficulty
 
 
 class EasyDifficulty(Difficulty):
