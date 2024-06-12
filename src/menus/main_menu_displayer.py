@@ -24,15 +24,15 @@ class MainMenu(TerminalDisplay):
                          2  -  Quit       
 
     Instructions:
-        - Match the question.
-        - Try not to lose.
-        - Win the game.
+        - Type in the number to select.
+        - Answer before the timer runs out.
+        - Type X anytime to close the app.
         
 =================================================================
         """
         )
         take_input = input("Input: ").lower()
-        if take_input == "2":
+        if (take_input == "2") or (take_input == "x"):
             if isinstance(self.owner, App):
                 self.owner.close_app()
         elif take_input == "1":
@@ -66,6 +66,8 @@ class MainMenu(TerminalDisplay):
             self.owner.create_game_map("easy")
         elif take_input == "2":
             self.owner.create_game_map("hard")
+        elif take_input == "x":
+            self.owner.close_app()
         else:
             self.invalid_input()
             self.display_difficulty_menu()

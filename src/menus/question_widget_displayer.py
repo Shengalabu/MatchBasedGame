@@ -10,20 +10,27 @@ class QuestionDisplay(TerminalDisplay):
         print(
         f"""
 =================================================================                             
-     {difficulty}                       
-    MATCH THE GIVEN:
-    
+                            
+    {difficulty} | Match the given:
+                {question_data[1]}
     
                               
                                             
-                        
-                        
-
+    {question_data[2][0]} || {question_data[2][1]} || {question_data[2][2]}                       
     
-    
-    
+    1 - {question_data[3][0]}
+    2 - {question_data[3][1]}
+    3 - {question_data[3][2]}
 
         
 =================================================================
         """
         )
+        take_input = int(input("Input: "))-1
+        if take_input == question_data[4]:
+            print("Correct!")
+        else:
+            print("Wrong!") 
+        
+            
+        
