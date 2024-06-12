@@ -18,8 +18,6 @@ class QuestionDisplay(TerminalDisplay):
         
     def refresh_display_question(self, time_left):
         self.clear_console()
-        print(time_left)
-        return
         print(
         f"""
 =================================================================                             
