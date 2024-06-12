@@ -9,5 +9,11 @@ class Actor:
         pass
     
     def clear_console_delayed(self, seconds=0.2):
+        self.clear_console()
+        self.delay(seconds)
+        
+    def clear_console(self):
         util_library.clear_console()
+        
+    def delay(self, seconds):
         util_library.delay(seconds)
