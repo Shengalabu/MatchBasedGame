@@ -4,7 +4,7 @@ from src.base_classes.level import Level
 import random
 
 class Difficulty(Level):
-    str_difficulty = "difficulty"
+    difficulty = "No difficulty selected"
     question_display_inst = None
     question_data = [["Color Yellow", "Filled With Pottasium", "A Fruit", "Banana"]
                     ]
@@ -21,5 +21,5 @@ class Difficulty(Level):
         
     def display_question(self):
         util_library.clear_console()
-        print(Difficulty.question_display_inst.display_question(Difficulty.str_difficulty, Difficulty.question_data[random.randrange(len(Difficulty.question_data))]))
+        print(Difficulty.question_display_inst.display_question(Difficulty.difficulty, Difficulty.question_data[random.randrange(len(Difficulty.question_data))]))
         #Difficulty.question_display_inst.display_question(Difficulty.str_difficulty, Difficulty.question_data[random.randrange(len(Difficulty.question_data))])

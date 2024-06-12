@@ -8,9 +8,9 @@ class QuestionDisplay(TerminalDisplay):
         
     def display_question(self, difficulty, question_data):
         print(
-        """
+        f"""
 =================================================================                             
-     {difficulty}                        
+     {difficulty}                       
     MATCH THE GIVEN:
     
     

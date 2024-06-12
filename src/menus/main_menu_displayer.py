@@ -20,8 +20,8 @@ class MainMenu(TerminalDisplay):
                                             
                         MATCHING GAME           
                                             
-                            Play                
-                            Quit       
+                         1  -  Play                
+                         2  -  Quit       
 
     Instructions:
         - Match the question.
@@ -32,10 +32,10 @@ class MainMenu(TerminalDisplay):
         """
         )
         take_input = input("Input: ").lower()
-        if take_input == "quit":
+        if take_input == "2":
             if isinstance(self.owner, App):
                 self.owner.close_app()
-        elif take_input == "play":
+        elif take_input == "1":
             self.display_difficulty_menu()
         else: 
             self.invalid_input()
@@ -48,23 +48,23 @@ class MainMenu(TerminalDisplay):
 =================================================================
                                         
                                             
-                        
-                        
-                        Select Difficulty           
+                      SELECT DIFFICULTY           
                                             
-                              Easy                
-                              Hard       
+                         1  -  Easy                
+                         2  -  Hard       
 
     
     
-
+    
+    
+        
 =================================================================
         """
         )
         take_input = input("Input: ").lower()
-        if take_input == "easy":
+        if take_input == "1":
             self.owner.create_game_map("easy")
-        elif take_input == "hard":
+        elif take_input == "2":
             self.owner.create_game_map("hard")
         else:
             self.invalid_input()
