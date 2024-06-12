@@ -18,6 +18,8 @@ class QuestionDisplay(TerminalDisplay):
         
     def refresh_display_question(self, time_left):
         self.clear_console()
+        print(time_left)
+        return
         print(
         f"""
 =================================================================                             
@@ -37,21 +39,27 @@ class QuestionDisplay(TerminalDisplay):
 =================================================================
         """
         )
-        self.evaluate_player_answer(self.difficulty, self.current_question_data)
+        input("Input: ")
+        self.evaluate_player_answer()
     
-    def evaluate_player_answer(self, difficulty, question_data):
+    def evaluate_player_answer(self):
         take_input = input("Input: ")
         
-        if not take_input.isdigit():
-            if take_input == "x":
-                self.owner.owner.display_main_menu()
+        if take_input == "x":
+            self.owner.owner.display_main_menu()
         
-        take_input = int(take_input)-1
+        try: 
+            take_input = int(take_input)
+        except:
+            self.clear_console()
+            print("Invalid input. Please try again.")
+            self.delay(0.24)
+            self.refresh_display_question("     ")
             
-        if take_input == question_data[4]:
-            self.display_correct(question_data)
+        if take_input == self.question_data[4]:
+            self.display_correct(self.question_data)
         else:
-            self.display_wrong(difficulty, question_data)
+            self.display_wrong(self.difficulty, self.question_data)
             
     def display_correct(self, question_data):
         self.clear_console()
