@@ -6,35 +6,39 @@ class QuestionDisplay(TerminalDisplay):
     current_question_data = None
     max_current_tries = 2
     current_tries = 2
+    difficulty = None
     
     def __init__(self, owner):
         super().__init__(owner)
         
-    def display_question(self, difficulty, question_data):
-        self.clear_console()
+    def display_new_question(self, difficulty, question_data, time_left):
         self.current_question_data = question_data
+        self.difficulty = difficulty
+        self.refresh_display_question(time_left)
+        
+    def refresh_display_question(self, time_left):
+        self.clear_console()
         print(
         f"""
 =================================================================                             
                             
-    {difficulty} | Match the given:
-                {question_data[1]}
+    {self.difficulty} | {time_left} | Match the given: 
+                {self.current_question_data[1]}
     
                               
                                             
-    {question_data[2][0]} || {question_data[2][1]} || {question_data[2][2]}                       
+    {self.current_question_data[2][0]} || {self.current_question_data[2][1]} || {self.current_question_data[2][2]}                       
     
-    1 - {question_data[3][0]}
-    2 - {question_data[3][1]}
-    3 - {question_data[3][2]}
+    1 - {self.current_question_data[3][0]}
+    2 - {self.current_question_data[3][1]}
+    3 - {self.current_question_data[3][2]}
 
         
 =================================================================
         """
         )
-        self.evaluate_player_answer(difficulty, question_data)
-        
-        
+        self.evaluate_player_answer(self.difficulty, self.current_question_data)
+    
     def evaluate_player_answer(self, difficulty, question_data):
         take_input = input("Input: ")
         
@@ -43,7 +47,7 @@ class QuestionDisplay(TerminalDisplay):
                 self.owner.owner.display_main_menu()
         
         take_input = int(take_input)-1
-        
+            
         if take_input == question_data[4]:
             self.display_correct(question_data)
         else:
@@ -84,7 +88,7 @@ class QuestionDisplay(TerminalDisplay):
                   """)
         self.delay(0.5)
         if self.current_tries > 0:
-            self.display_question(difficulty, question_data)
+            self.display_new_question(difficulty, question_data, "     ")
         if self.current_tries <= 0:
             self.current_tries = self.max_current_tries
             self.owner.player_failed_to_answer(question_data[0])
