@@ -43,23 +43,27 @@ class QuestionDisplay(TerminalDisplay):
     def evaluate_player_answer(self):
         take_input = input("Input: ")
         
-        if take_input == "x":
-            self.owner.owner.display_main_menu()
         
+        
+        
+            
+    def evaluate_player_answer(self, user_input):
+        if user_input == "x":
+            self.owner.owner.display_main_menu()
         try: 
-            take_input = int(take_input)
+            user_input = int(user_input)
         except:
             self.clear_console()
             print("Invalid input. Please try again.")
             self.delay(0.24)
             self.refresh_display_question("     ")
             
-        if take_input == self.question_data[4]:
-            self.display_correct(self.question_data)
+        if user_input == self.question_data[4]:
+            self.display_correct()
         else:
-            self.display_wrong(self.difficulty, self.question_data)
+            self.display_wrong()
             
-    def display_correct(self, question_data):
+    def display_correct(self):
         self.clear_console()
         print("""
 =================================================================  
@@ -74,9 +78,9 @@ class QuestionDisplay(TerminalDisplay):
 =================================================================
                   """)
         self.delay(0.5)
-        self.owner.player_got_correct_answer(self.current_tries*5, question_data[0])
+        self.owner.player_got_correct_answer(self.current_tries*5, self.current_question_data[0])
         
-    def display_wrong(self, difficulty, question_data):
+    def display_wrong(self):
         self.current_tries -= 1
         self.clear_console()
         print("""
@@ -94,8 +98,8 @@ class QuestionDisplay(TerminalDisplay):
                   """)
         self.delay(0.5)
         if self.current_tries > 0:
-            self.display_new_question(difficulty, question_data, "     ")
+            self.display_new_question(self.difficulty, self.current_question_data, "     ")
         if self.current_tries <= 0:
             self.current_tries = self.max_current_tries
-            self.owner.player_failed_to_answer(question_data[0])
+            self.owner.player_failed_to_answer(self.current_question_data[0])
         
