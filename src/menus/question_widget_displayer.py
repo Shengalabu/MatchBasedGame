@@ -57,14 +57,14 @@ class QuestionDisplay(TerminalDisplay):
                 
     def evaluate_player_answer(self, user_input):
         if user_input == "x":
-            self.owner.owner.display_main_menu()
+            self.owner.player_wants_to_stop()
         try: 
             user_input = int(user_input)-1
         except ValueError:
             self.clear_console()
             print("Invalid input. Please try again.")
-            self.delay(0.24)
-            self.refresh_display_question("     ")
+            self.delay(0.5)
+            self.refresh_display_question()
             
         if user_input == self.current_question_data[4]:
             self.display_correct()
@@ -106,7 +106,7 @@ class QuestionDisplay(TerminalDisplay):
                   """)
         self.delay(0.5)
         if self.current_tries > 0:
-            self.display_new_question(self.difficulty, self.current_question_data, "     ")
+            self.display_new_question(self.difficulty, self.current_question_data)
         if self.current_tries <= 0:
             self.current_tries = self.max_current_tries
             self.owner.player_failed_to_answer(self.current_question_data[0])

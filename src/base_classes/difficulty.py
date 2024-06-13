@@ -27,7 +27,8 @@ class Difficulty(Level):
         self.start_questioning()
         
     def get_time_left(self):
-        mins, secs = divmod(self.time_left, 60)
+        timeleft = self.time_left
+        mins, secs = divmod(timeleft, 60)
         time_formated = '{:02d}:{:02d}'.format(mins, secs)
         return time_formated
     
@@ -39,11 +40,11 @@ class Difficulty(Level):
         return 60 if self.difficulty == "easy" else 30
     
     def start_questioning(self):
-        self.timer_inst = BackgroundTimer(self.get_initial_time, self)
+        self.timer_inst = BackgroundTimer(self.time_left, self)
         self.display_new_question()
         
-    def run_timer_task(self, time_left):
-        self.time_left = time_left
+    def run_timer_task(self, raw_time_left):
+        self.time_left = raw_time_left
         self.refresh_question_display()
         
     def create_question_displayer(self):
@@ -56,7 +57,7 @@ class Difficulty(Level):
     def player_got_correct_answer(self, points, question_index):
         self.player_points += points
         self.finished_questions.append(question_index) 
-        self.display_new_question("     ")  
+        self.display_new_question()  
     
     def player_failed_to_answer(self, question_index):
         self.finished_questions.append(question_index) 
@@ -64,6 +65,16 @@ class Difficulty(Level):
         
     def refresh_question_display(self):
         self.question_display_inst.refresh_display_question()
+        
+    def player_wants_to_stop(self):
+        self.stop_timer()
+
+    def stop_timer(self):
+        self.timer_inst.stop_timer()
     
     def times_up(self):
-        pass
+        self.clear_console()
+        print("Thanks for playing. Your score is: " + str(self.player_points))
+        self.delay(1)
+        self.owner.display_main_menu()    
+    
