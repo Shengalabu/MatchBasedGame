@@ -17,6 +17,7 @@ class QuestionDisplay(TerminalDisplay):
         self.current_question_data = question_data
         self.difficulty = difficulty
         self.refresh_display_question(time_left)
+        self.thread_take_user_input()
         
     def refresh_display_question(self, time_left):
         self.clear_console()
@@ -58,7 +59,7 @@ class QuestionDisplay(TerminalDisplay):
         if user_input == "x":
             self.owner.owner.display_main_menu()
         try: 
-            user_input = int(user_input)
+            user_input = int(user_input)-1
         except ValueError:
             self.clear_console()
             print("Invalid input. Please try again.")
