@@ -16,6 +16,7 @@ class BackgroundTimer(Actor):
             mins, secs = divmod(self.seconds, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
             #print(timer, end="\r")
+            #print(self.owner)
             time.sleep(1)
             self.seconds -= 1
             self.message_owner_tick(str(timer))

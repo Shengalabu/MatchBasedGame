@@ -40,7 +40,7 @@ class Difficulty(Level):
         
     def display_new_question(self, time_left):
         self.clear_console()
-        self.question_display_inst.display_new_question(Difficulty.difficulty, Difficulty.question_data[random.randrange(len(Difficulty.question_data))], time_left)
+        self.question_display_inst.display_new_question(self.difficulty, self.question_data[random.randrange(len(self.question_data))], time_left)
         
     def player_got_correct_answer(self, points, question_index):
         self.player_points += points
