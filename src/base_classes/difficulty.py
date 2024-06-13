@@ -7,13 +7,13 @@ from src.base_classes.level import Level
 
 import random
 
-
 class Difficulty(Level):
     difficulty = "No difficulty selected"
     question_display_inst = None
     player_points = 0
     finished_questions = []
     timer_inst = None
+    time_left = 0
     
     
     #index, ASCII_Index, HintArray, PossibleAnswerArray, CorrectAnswerIndex
@@ -21,26 +21,37 @@ class Difficulty(Level):
                      ["1", ascii_library.ascii_list[1], ["Hot individual", "An Ogre", "Has a movie"], ["Puss In Boots", "Denji", "Shrek"], 2]
                     ]
     
-    
-    
     def __init__(self, owner):
         super().__init__(owner)
         self.create_question_displayer()
         self.start_questioning()
         
+    def get_time_left(self):
+        mins, secs = divmod(self.time_left, 60)
+        time_formated = '{:02d}:{:02d}'.format(mins, secs)
+        return time_formated
+    
+    def get_player_points(self):
+        return self.player_points
+        
+    #Not really used since the changing of initial time is handled in the child class
+    def get_initial_time(self):
+        return 60 if self.difficulty == "easy" else 30
+    
     def start_questioning(self):
-        self.timer_inst = BackgroundTimer(60, self)
-        self.display_new_question("     ")
+        self.timer_inst = BackgroundTimer(self.get_initial_time, self)
+        self.display_new_question()
         
     def run_timer_task(self, time_left):
-        self.refresh_question_display(time_left)
+        self.time_left = time_left
+        self.refresh_question_display()
         
     def create_question_displayer(self):
         self.question_display_inst = QuestionDisplay(self)
         
-    def display_new_question(self, time_left):
+    def display_new_question(self):
         self.clear_console()
-        self.question_display_inst.display_new_question(self.difficulty, self.question_data[random.randrange(len(self.question_data))], time_left)
+        self.question_display_inst.display_new_question(self.difficulty, self.question_data[random.randrange(len(self.question_data))])
         
     def player_got_correct_answer(self, points, question_index):
         self.player_points += points
@@ -49,10 +60,10 @@ class Difficulty(Level):
     
     def player_failed_to_answer(self, question_index):
         self.finished_questions.append(question_index) 
-        self.display_new_question("     ")
+        self.display_new_question()
         
-    def refresh_question_display(self, time_left):
-        self.question_display_inst.refresh_display_question(time_left)
+    def refresh_question_display(self):
+        self.question_display_inst.refresh_display_question()
     
     def times_up(self):
         pass

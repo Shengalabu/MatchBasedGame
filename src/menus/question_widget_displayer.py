@@ -13,19 +13,19 @@ class QuestionDisplay(TerminalDisplay):
     def __init__(self, owner):
         super().__init__(owner)
         
-    def display_new_question(self, difficulty, question_data, time_left):
+    def display_new_question(self, difficulty, question_data):
         self.current_question_data = question_data
         self.difficulty = difficulty
-        self.refresh_display_question(time_left)
+        self.refresh_display_question()
         self.thread_take_user_input()
         
-    def refresh_display_question(self, time_left):
+    def refresh_display_question(self):
         self.clear_console()
         print(
         f"""
 =================================================================                             
                             
-    {self.difficulty} | {time_left} | Match the given: 
+    {self.difficulty} | {self.owner.get_time_left()} | {self.owner.get_player_points()}pts | Match the given: 
                 {self.current_question_data[1]}
     
                               
