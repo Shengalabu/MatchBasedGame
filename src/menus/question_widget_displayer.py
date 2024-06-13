@@ -3,7 +3,6 @@ from src.base_classes.actor import Actor
 import threading
 from concurrent.futures import ThreadPoolExecutor
 
-
 class QuestionDisplay(TerminalDisplay):
     current_question_data = None
     max_current_tries = 2
@@ -12,7 +11,7 @@ class QuestionDisplay(TerminalDisplay):
     
     def __init__(self, owner):
         super().__init__(owner)
-        
+        self.executor = ThreadPoolExecutor()  
     def display_new_question(self, difficulty, question_data):
         self.current_question_data = question_data
         self.difficulty = difficulty
@@ -50,21 +49,22 @@ class QuestionDisplay(TerminalDisplay):
         self.evaluate_player_answer(variable)
     
     def thread_take_user_input(self):
-        with ThreadPoolExecutor() as executor:
-            future = executor.submit(self.take_user_input)
-            future.add_done_callback(self.callback)
+        future = self.executor.submit(self.take_user_input)
+        future.add_done_callback(self.callback)
     
                 
     def evaluate_player_answer(self, user_input):
         if user_input == "x":
             self.owner.player_wants_to_stop()
+            return  # Return early to avoid further processing
         try: 
-            user_input = int(user_input)-1
+            user_input = int(user_input) - 1
         except ValueError:
             self.clear_console()
             print("Invalid input. Please try again.")
             self.delay(0.5)
             self.refresh_display_question()
+            return  # Return early to avoid further processing
             
         if user_input == self.current_question_data[4]:
             self.display_correct()
@@ -86,7 +86,7 @@ class QuestionDisplay(TerminalDisplay):
 =================================================================
                   """)
         self.delay(0.5)
-        self.owner.player_got_correct_answer(self.current_tries*5, self.current_question_data[0])
+        self.owner.player_got_correct_answer(self.current_tries * 5, self.current_question_data[0])
         
     def display_wrong(self):
         self.current_tries -= 1
@@ -110,4 +110,6 @@ class QuestionDisplay(TerminalDisplay):
         if self.current_tries <= 0:
             self.current_tries = self.max_current_tries
             self.owner.player_failed_to_answer(self.current_question_data[0])
-        
+    
+    def stop(self):
+        self.executor.shutdown(wait=True)
