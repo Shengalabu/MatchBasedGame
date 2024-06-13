@@ -1,5 +1,7 @@
 from src.base_classes.terminal_display import TerminalDisplay
 from src.base_classes.actor import Actor
+import threading
+from concurrent.futures import ThreadPoolExecutor
 
 
 class QuestionDisplay(TerminalDisplay):
@@ -37,28 +39,33 @@ class QuestionDisplay(TerminalDisplay):
 =================================================================
         """
         )
-        input("Input: ")
-        self.evaluate_player_answer()
     
-    def evaluate_player_answer(self):
+    def take_user_input(self):
         take_input = input("Input: ")
-        
-        
-        
-        
-            
+        return take_input
+    
+    def callback(self, future):
+        variable = future.result()
+        self.evaluate_player_answer(variable)
+    
+    def thread_take_user_input(self):
+        with ThreadPoolExecutor() as executor:
+            future = executor.submit(self.take_user_input)
+            future.add_done_callback(self.callback)
+    
+                
     def evaluate_player_answer(self, user_input):
         if user_input == "x":
             self.owner.owner.display_main_menu()
         try: 
             user_input = int(user_input)
-        except:
+        except ValueError:
             self.clear_console()
             print("Invalid input. Please try again.")
             self.delay(0.24)
             self.refresh_display_question("     ")
             
-        if user_input == self.question_data[4]:
+        if user_input == self.current_question_data[4]:
             self.display_correct()
         else:
             self.display_wrong()
