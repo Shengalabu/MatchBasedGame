@@ -1,6 +1,7 @@
 from src.base_classes.terminal_display import TerminalDisplay
 from src.base_classes.actor import Actor
-
+import threading
+import queue
 
 class QuestionDisplay(TerminalDisplay):
     current_question_data = None
@@ -10,11 +11,22 @@ class QuestionDisplay(TerminalDisplay):
     
     def __init__(self, owner):
         super().__init__(owner)
+        self.input_queue = queue.Queue()
+        self._stop_event = threading.Event()
+        self.thread0 = None  # Initialize thread attribute
         
     def display_new_question(self, difficulty, question_data, time_left):
         self.current_question_data = question_data
         self.difficulty = difficulty
         self.refresh_display_question(time_left)
+        self._stop_event.clear()
+        
+        if self.thread0 and self.thread0.is_alive():
+            self._stop_event.set()
+            self.thread0.join()
+
+        self.thread0 = threading.Thread(target=self.get_user_input)
+        self.thread0.start()  # Start a new thread to handle user input
         
     def refresh_display_question(self, time_left):
         self.clear_console()
@@ -37,27 +49,39 @@ class QuestionDisplay(TerminalDisplay):
 =================================================================
         """
         )
-        input("Input: ")
-        self.evaluate_player_answer()
+        
+    def get_user_input(self):
+        while not self._stop_event.is_set():
+            take_input = input("Input: ")
+            self.input_queue.put(take_input)
+            if take_input == "x":
+                self._stop_event.set()
+                self.owner.owner.display_main_menu()
+                return
     
-    def evaluate_player_answer(self):
-        take_input = input("Input: ")
-        
-        if take_input == "x":
-            self.owner.owner.display_main_menu()
-        
-        try: 
-            take_input = int(take_input)
-        except:
-            self.clear_console()
-            print("Invalid input. Please try again.")
-            self.delay(0.24)
-            self.refresh_display_question("     ")
+    def process_input(self):
+        while not self.input_queue.empty():
+            take_input = self.input_queue.get()
             
-        if take_input == self.question_data[4]:
-            self.display_correct(self.question_data)
-        else:
-            self.display_wrong(self.difficulty, self.question_data)
+            if take_input == "x":
+                self.owner.owner.display_main_menu()
+                return
+            
+            try: 
+                take_input = int(take_input)
+            except ValueError:
+                self.clear_console()
+                print("Invalid input. Please try again.")
+                self.delay(0.24)
+                self.refresh_display_question("00:00")
+                continue
+            
+            if take_input == self.current_question_data[4]:
+                self.display_correct(self.current_question_data)
+                return
+            else:
+                self.display_wrong(self.difficulty, self.current_question_data)
+                return
             
     def display_correct(self, question_data):
         self.clear_console()
@@ -74,7 +98,7 @@ class QuestionDisplay(TerminalDisplay):
 =================================================================
                   """)
         self.delay(0.5)
-        self.owner.player_got_correct_answer(self.current_tries*5, question_data[0])
+        self.owner.player_got_correct_answer(self.current_tries * 5, question_data[0])
         
     def display_wrong(self, difficulty, question_data):
         self.current_tries -= 1
@@ -94,8 +118,12 @@ class QuestionDisplay(TerminalDisplay):
                   """)
         self.delay(0.5)
         if self.current_tries > 0:
-            self.display_new_question(difficulty, question_data, "     ")
+            self.display_new_question(difficulty, question_data, "00:00")
         if self.current_tries <= 0:
             self.current_tries = self.max_current_tries
             self.owner.player_failed_to_answer(question_data[0])
-        
+    
+    def stop(self):
+        self._stop_event.set()
+        if self.thread0 and self.thread0.is_alive():
+            self.thread0.join()
