@@ -24,7 +24,6 @@ Main creates an instance of APP which handles all app related stuff.
 - index, ASCII_Index, HintArray, PossibleAnswerArray, CorrectAnswerIndex
 ### Example Usage 
 - [["0", ascii_library.ascii_list[0], ["Yellow", "A fruit", "Filled with Pottatium"], ["Banana", "Apple", "Yellow Mango"], 0]]
-5. That's about it.
 
 
 ## What is threading and do we really need it?
