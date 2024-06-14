@@ -11,12 +11,14 @@ class QuestionDisplay(TerminalDisplay):
     
     def __init__(self, owner):
         super().__init__(owner)
-        self.executor = ThreadPoolExecutor()  
+        self.executor = ThreadPoolExecutor()
+        
     def display_new_question(self, difficulty, question_data):
         self.current_question_data = question_data
         self.difficulty = difficulty
         self.refresh_display_question()
         self.thread_take_user_input()
+        
         
     def refresh_display_question(self):
         self.clear_console()
@@ -50,24 +52,25 @@ class QuestionDisplay(TerminalDisplay):
     
     def thread_take_user_input(self):
         future = self.executor.submit(self.take_user_input)
+        future.result(self.owner.get_raw_time_left())
         future.add_done_callback(self.callback)
     
+    def end_all_functions(self):
+        self.stop_thread()
+        self.owner.player_wants_to_stop()
                 
     def evaluate_player_answer(self, user_input):
+        if self.owner.get_raw_time_left() <= 0:
+            self.end_all_functions()
         if user_input == "x":
-            self.owner.player_wants_to_stop()
-            return  # Return early to avoid further processing
-        try: 
-            user_input = int(user_input) - 1
-        except ValueError:
-            self.clear_console()
-            print("Invalid input. Please try again.")
-            self.delay(0.5)
-            self.refresh_display_question()
-            return  # Return early to avoid further processing
-            
-        if user_input == self.current_question_data[4]:
-            self.display_correct()
+            self.end_all_functions()
+            return  
+        if user_input.isdigit():
+            user_input = int(user_input) - 1    
+            if user_input == self.current_question_data[4]:
+                self.display_correct()
+            else:
+                self.display_wrong()
         else:
             self.display_wrong()
             
@@ -111,5 +114,5 @@ class QuestionDisplay(TerminalDisplay):
             self.current_tries = self.max_current_tries
             self.owner.player_failed_to_answer(self.current_question_data[0])
     
-    def stop(self):
+    def stop_thread(self):
         self.executor.shutdown(wait=True)

@@ -25,7 +25,10 @@ class Difficulty(Level):
         super().__init__(owner)
         self.create_question_displayer()
         self.start_questioning()
-        
+    
+    def get_raw_time_left(self):
+        return self.time_left
+    
     def get_time_left(self):
         timeleft = self.time_left
         mins, secs = divmod(timeleft, 60)

@@ -3,21 +3,24 @@ import time
 
 from src.base_classes.actor import Actor
 
+
 class BackgroundTimer(Actor):
     def __init__(self, seconds, owner):
         super().__init__(owner)
         self.seconds = seconds
-        self.thread = threading.Thread(target=self.run)
+        self.thread = threading.Thread(target=self.thread_run_timer)
         self.stop_event = threading.Event()
         self.thread.daemon = True 
         self.start_timer()
+        
     
-    def run(self):
+    def thread_run_timer(self):
         while self.seconds > 0:
             time.sleep(1)
             self.seconds -= 1
             self.message_owner_tick(self.seconds)
-        self.message_owner_times_up()
+        
+
     
     def message_owner_tick(self, raw_time_left):
         self.owner.run_timer_task(raw_time_left)
@@ -32,6 +35,12 @@ class BackgroundTimer(Actor):
         self.seconds = 0
         self.stop_event.set()
         self.thread.join()
+        self.message_owner_times_up()
+
+        
+        
+        
+        
 
 
 
