@@ -8,6 +8,6 @@ class HardDifficulty(Difficulty):
         # modifiable
         self.difficulty = f"""{Colors.BI_Red}廾闩尺ᗪ{Colors.Reset}""" 
         # modifiable
-        self.time_left = 5      
+        self.time_left = 30      
         super().__init__(owner)
         
