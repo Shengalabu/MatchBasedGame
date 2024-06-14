@@ -1,3 +1,4 @@
+from src.libraries.color_library import Colors
 from src.base_classes.terminal_display import TerminalDisplay
 from src.libraries import util_library
 
@@ -14,11 +15,11 @@ class MainMenu(TerminalDisplay):
         from src.app import App  # Local import to avoid circular import
         util_library.clear_console()
         print(
-        """
-=================================================================
+        f"""
+{Colors.Bold}================================================================={Colors.Reset}
                                         
                                             
-                        MATCHING GAME           
+                        {Colors.Bold}{Colors.Yellow}MATCHING GAME{Colors.Reset}           
                                             
                          1  -  Play                
                          2  -  Quit       
@@ -28,7 +29,7 @@ class MainMenu(TerminalDisplay):
         - Answer before the timer runs out.
         - Type X anytime to close the app.
         
-=================================================================
+{Colors.Bold}================================================================={Colors.Reset}
         """
         )
         take_input = input("Input: ").lower()
@@ -44,21 +45,21 @@ class MainMenu(TerminalDisplay):
     def display_difficulty_menu(self):
         util_library.clear_console()
         print(
-        """
-=================================================================
+        f"""
+{Colors.Bold}================================================================={Colors.Reset}
                                         
                                             
-                      SELECT DIFFICULTY           
+                      {Colors.Bold}SELECT DIFFICULTY{Colors.Reset}           
                                             
-                         1  -  Easy                
-                         2  -  Hard       
+                         {Colors.Bold}{Colors.BI_Green}1  -  Easy{Colors.Reset}                
+                         {Colors.Bold}{Colors.BI_Red}2  -  Hard{Colors.Reset}       
 
     
     
     
     
         
-=================================================================
+{Colors.Bold}================================================================={Colors.Reset}
         """
         )
         take_input = input("Input: ").lower()

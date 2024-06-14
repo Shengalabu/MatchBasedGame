@@ -1,3 +1,4 @@
+from src.libraries.color_library import Colors
 from src.base_classes.terminal_display import TerminalDisplay
 from src.base_classes.actor import Actor
 import threading
@@ -24,7 +25,7 @@ class QuestionDisplay(TerminalDisplay):
         self.clear_console()
         print(
         f"""
-=================================================================                             
+{Colors.Bold}================================================================={Colors.Reset}                             
                             
     {self.difficulty} | {self.owner.get_time_left()} | {self.owner.get_player_points()}pts | Match the given: 
                 {self.current_question_data[1]}
@@ -33,17 +34,18 @@ class QuestionDisplay(TerminalDisplay):
                                             
     {self.current_question_data[2][0]} || {self.current_question_data[2][1]} || {self.current_question_data[2][2]}                       
     
-    1 - {self.current_question_data[3][0]}
-    2 - {self.current_question_data[3][1]}
-    3 - {self.current_question_data[3][2]}
+    {Colors.Bold}1 - {self.current_question_data[3][0]}{Colors.Reset}  
+    {Colors.Bold}2 - {self.current_question_data[3][1]}{Colors.Reset}
+    {Colors.Bold}3 - {self.current_question_data[3][2]}{Colors.Reset}
 
         
-=================================================================
+{Colors.Bold}================================================================={Colors.Reset} 
+Input:
         """
         )
     
     def take_user_input(self):
-        take_input = input("Input: ")
+        take_input = input()
         return take_input
     
     def callback(self, future):
