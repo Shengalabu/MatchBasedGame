@@ -19,7 +19,7 @@ class MainMenu(TerminalDisplay):
 {Colors.Bold}================================================================={Colors.Reset}
                                         
                                             
-                        {Colors.Bold}{Colors.Yellow}MATCHING GAME{Colors.Reset}           
+                      {Colors.Bold}{Colors.Yellow}MⷨAͣᴛⷮCͨн ВAͣS͛EͤDͩ GAͣMⷨEͤ{Colors.Reset}           
                                             
                          1  -  Play                
                          2  -  Quit       
@@ -43,17 +43,17 @@ class MainMenu(TerminalDisplay):
             self.display_main_menu()
 
     def display_difficulty_menu(self):
-        util_library.clear_console()
+        self.clear_console()
         print(
         f"""
 {Colors.Bold}================================================================={Colors.Reset}
                                         
                                             
-                      {Colors.Bold}SELECT DIFFICULTY{Colors.Reset}           
+                      {Colors.Bold}𝗦𝗘𝗟𝗘𝗖𝗧 𝗗𝗜𝗙𝗙𝗜𝗖𝗨𝗟𝗧𝗬{Colors.Reset}           
                                             
-                         {Colors.Bold}{Colors.BI_Green}1  -  Easy{Colors.Reset}                
-                         {Colors.Bold}{Colors.BI_Red}2  -  Hard{Colors.Reset}       
-
+                         {Colors.Bold}{Colors.BI_Green}1  -  𝐸𝑎𝑠𝑦{Colors.Reset}    
+                                     
+                         {Colors.Bold}{Colors.BI_Red}2  -  H̴̪̦̞̽̓̓a̴͔̝̒͆̓r̵̝͍̠̔͌d̴̢̫̠̀͛{Colors.Reset}       
     
     
     

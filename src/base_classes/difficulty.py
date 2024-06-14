@@ -77,7 +77,6 @@ class Difficulty(Level):
     
     def times_up(self):
         self.clear_console()
-        print("Thanks for playing. Your score is: " + str(self.player_points))
-        self.delay(1)
+        self.question_display_inst.display_loading_animation()
         self.owner.display_main_menu()    
     

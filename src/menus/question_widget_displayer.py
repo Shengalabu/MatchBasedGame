@@ -54,16 +54,25 @@ Input:
     
     def thread_take_user_input(self):
         future = self.executor.submit(self.take_user_input)
-        future.result(self.owner.get_raw_time_left())
-        future.add_done_callback(self.callback)
+        try:
+            future.result(self.owner.get_raw_time_left())
+        except TimeoutError:
+            self.delay(0.2)
+            self.display_timeout()
+            self.end_all_functions()
+            
+        else:
+            future.add_done_callback(self.callback)
+    
+    def stop_thread(self):
+        self.executor.shutdown(wait=True)
     
     def end_all_functions(self):
         self.stop_thread()
         self.owner.player_wants_to_stop()
                 
     def evaluate_player_answer(self, user_input):
-        if self.owner.get_raw_time_left() <= 0:
-            self.end_all_functions()
+
         if user_input == "x":
             self.end_all_functions()
             return  
@@ -83,8 +92,8 @@ Input:
 
 
                 
-            █▀▀ █▀█ █▀█ █▀█ █▀▀ █▀▀ ▀█▀
-            █▄▄ █▄█ █▀▄ █▀▄ ██▄ █▄▄ ░█░
+                  █▀▀ █▀█ █▀█ █▀█ █▀▀ █▀▀ ▀█▀
+                  █▄▄ █▄█ █▀▄ █▀▄ ██▄ █▄▄ ░█░
             
             
 
@@ -101,9 +110,8 @@ Input:
 
      
      
-
-             █░█░█ █▀█ █▀█ █▄░█ █▀▀
-             ▀▄▀▄▀ █▀▄ █▄█ █░▀█ █▄█
+                     █░█░█ █▀█ █▀█ █▄░█ █▀▀
+                     ▀▄▀▄▀ █▀▄ █▄█ █░▀█ █▄█
 
             
 
@@ -115,6 +123,92 @@ Input:
         if self.current_tries <= 0:
             self.current_tries = self.max_current_tries
             self.owner.player_failed_to_answer(self.current_question_data[0])
+
+    def display_timeout(self):
+        self.clear_console()
+        print(f"""
+{Colors.Bold}================================================================={Colors.Reset}
+
+
+     
+                 ▀█▀ █ █▀▄▀█ █▀▀ █▀█ █░█ ▀█▀
+                 ░█░ █ █░▀░█ ██▄ █▄█ █▄█ ░█░
+                 
+                    {Colors.Bold}Final Score: {Colors.BI_Green}{self.owner.get_player_points()}{Colors.Reset} pts
+
+                   PRESS ENTER TO CONTINUE
+
+
+{Colors.Bold}================================================================={Colors.Reset}
+""")
+        
+    def display_loading_animation(self):
+        self.clear_console()
+        self.display_loading_0()
+        self.delay(0.024)
+        self.clear_console()
+        self.display_loading_1()
+        self.delay(0.05)
+        self.clear_console()
+        self.display_loading_2()
+        self.delay(0.15)
+        self.clear_console()
+        self.display_loading_3()
+        self.delay(0.1)
     
-    def stop_thread(self):
-        self.executor.shutdown(wait=True)
+    def display_loading_0(self):
+                print(f"""
+{Colors.Bold}================================================================={Colors.Reset}
+
+     
+     
+               █░
+               █▄
+
+            
+
+=====
+""")
+    
+    def display_loading_1(self):
+                print(f"""
+{Colors.Bold}================================================================={Colors.Reset}
+
+     
+     
+               █░░ █▀
+               █▄▄ █
+
+            
+
+===========
+""")
+
+    def display_loading_2(self):
+                print(f"""
+{Colors.Bold}================================================================={Colors.Reset}  
+
+     
+     
+               █░░ █▀█ ▄▀█ █
+               █▄▄ █▄█ █▀█ █▄
+
+            
+
+==============================
+""")
+
+    def display_loading_3(self):
+                print(f"""
+{Colors.Bold}================================================================={Colors.Reset}  
+
+     
+     
+               █░░ █▀█ ▄▀█ █▀▄ █ █▄░█ █▀▀ █ █ █
+               █▄▄ █▄█ █▀█ █▄▀ █ █░▀█ █▄█ ▄ ▄ ▄
+
+            
+
+=================================================================
+""")
+    

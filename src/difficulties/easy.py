@@ -6,7 +6,7 @@ from src.base_classes.difficulty import Difficulty
 class EasyDifficulty(Difficulty):
     def __init__(self, owner):
         # modifiable
-        self.difficulty = f"""{Colors.BI_Green}Easy{Colors.Reset}"""
+        self.difficulty = f"""{Colors.BI_Green}𝐸𝑎𝑠𝑦{Colors.Reset}"""
         # modifiable
         self.time_left = 60
         # modifiable
