@@ -30,8 +30,6 @@ class QuestionDisplay(TerminalDisplay):
     {self.difficulty} | {self.owner.get_time_left()} | {self.owner.get_player_points()}pts | Match the given: 
                 {self.current_question_data[1]}
     
-                              
-                                            
     {self.current_question_data[2][0]} || {self.current_question_data[2][1]} || {self.current_question_data[2][2]}                       
     
     {Colors.Bold}1 - {self.current_question_data[3][0]}{Colors.Reset}  
@@ -57,8 +55,9 @@ Input:
         try:
             future.result(self.owner.get_raw_time_left())
         except TimeoutError:
-            self.delay(0.2)
+            self.delay(0)
             self.display_timeout()
+            self.delay(1.5)
             self.end_all_functions()
             
         else:

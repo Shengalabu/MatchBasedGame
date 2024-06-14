@@ -9,6 +9,7 @@ import time
 
 
 class App(Actor):
+    total_points = 0
     main_menu_inst = None  # Class variable
     game_level = None      # Class variable
 
@@ -16,6 +17,9 @@ class App(Actor):
         super().__init__(owner or self)
         self.create_main_menu()
         self.display_main_menu()
+    
+    def add_points(self, points):
+        self.total_points += points
     
     def create_main_menu(self):
         self.main_menu_inst = MainMenu(self)
