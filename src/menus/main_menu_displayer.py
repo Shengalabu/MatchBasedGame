@@ -26,7 +26,7 @@ class MainMenu(TerminalDisplay):
 
     Instructions:
         - Type in the number to select.
-        - Answer before the timer runs out.
+        - Get as much points as you can before the timer runs out.
         - Type X anytime to close the app.
         
 {Colors.Bold}================================================================={Colors.Reset}
