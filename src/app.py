@@ -4,6 +4,10 @@ from src.menus.main_menu_displayer import MainMenu
 from src.libraries import util_library
 from src.base_classes.actor import Actor
 
+import threading
+import time
+
+
 class App(Actor):
     main_menu_inst = None  # Class variable
     game_level = None      # Class variable
@@ -14,11 +18,11 @@ class App(Actor):
         self.display_main_menu()
     
     def create_main_menu(self):
-        App.main_menu_inst = MainMenu(self)
+        self.main_menu_inst = MainMenu(self)
     
     def display_main_menu(self):
-        if App.main_menu_inst:
-            App.main_menu_inst.display_main_menu()
+        if self.main_menu_inst:
+            self.main_menu_inst.display_main_menu()
         else:
             print("Main menu is not created.")
             
