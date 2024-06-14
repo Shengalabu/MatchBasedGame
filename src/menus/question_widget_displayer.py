@@ -25,7 +25,7 @@ class QuestionDisplay(TerminalDisplay):
         self.clear_console()
         print(
         f"""
-{Colors.Bold}================================================================={Colors.Reset}                             
+{Colors.Bold}==================================================================={Colors.Reset}                             
                             
     {self.difficulty} | {self.owner.get_time_left()} | {self.owner.get_player_points()}pts | Match the given: 
                 {self.current_question_data[1]}
@@ -39,7 +39,7 @@ class QuestionDisplay(TerminalDisplay):
     {Colors.Bold}3 - {self.current_question_data[3][2]}{Colors.Reset}
 
         
-{Colors.Bold}================================================================={Colors.Reset} 
+{Colors.Bold}==================================================================={Colors.Reset} 
 Input:
         """
         )
@@ -88,16 +88,28 @@ Input:
     def display_correct(self):
         self.clear_console()
         print("""
-=================================================================  
+}==================================================================={  
 
 
+
+
+
+
+            
                 
-                  █▀▀ █▀█ █▀█ █▀█ █▀▀ █▀▀ ▀█▀
-                  █▄▄ █▄█ █▀▄ █▀▄ ██▄ █▄▄ ░█░
+                   █▀▀ █▀█ █▀█ █▀█ █▀▀ █▀▀ ▀█▀
+                   █▄▄ █▄█ █▀▄ █▀▄ ██▄ █▄▄ ░█░
             
             
 
-=================================================================
+
+
+
+
+
+
+
+}==================================================================={
                   """)
         self.delay(0.5)
         self.owner.player_got_correct_answer(self.current_tries * 5, self.current_question_data[0])
@@ -106,16 +118,28 @@ Input:
         self.current_tries -= 1
         self.clear_console()
         print("""
-=================================================================  
+}==================================================================={  
 
      
+
+
+
+
+
      
-                     █░█░█ █▀█ █▀█ █▄░█ █▀▀
-                     ▀▄▀▄▀ █▀▄ █▄█ █░▀█ █▄█
+                      █░█░█ █▀█ █▀█ █▄░█ █▀▀
+                      ▀▄▀▄▀ █▀▄ █▄█ █░▀█ █▄█
+
+
+
+
 
             
 
-=================================================================
+
+
+
+}==================================================================={
                   """)
         self.delay(0.5)
         if self.current_tries > 0:
@@ -127,19 +151,28 @@ Input:
     def display_timeout(self):
         self.clear_console()
         print(f"""
-{Colors.Bold}================================================================={Colors.Reset}
+{Colors.Bold}==================================================================={Colors.Reset}
+
+
+
+
 
 
      
-                 ▀█▀ █ █▀▄▀█ █▀▀ █▀█ █░█ ▀█▀
-                 ░█░ █ █░▀░█ ██▄ █▄█ █▄█ ░█░
-                 
-                    {Colors.Bold}Final Score: {Colors.BI_Green}{self.owner.get_player_points()}{Colors.Reset} pts
+                    ▀█▀ █ █▀▄▀█ █▀▀ █▀█ █░█ ▀█▀
+                    ░█░ █ █░▀░█ ██▄ █▄█ █▄█ ░█░
+                    
+                        {Colors.Bold}Final Score: {Colors.BI_Green}{self.owner.get_player_points()}{Colors.Reset} pts
 
-                   PRESS ENTER TO CONTINUE
+                      PRESS ENTER TO CONTINUE
 
 
-{Colors.Bold}================================================================={Colors.Reset}
+
+
+
+
+
+{Colors.Bold}==================================================================={Colors.Reset}
 """)
         
     def display_loading_animation(self):
@@ -158,7 +191,7 @@ Input:
     
     def display_loading_0(self):
                 print(f"""
-{Colors.Bold}================================================================={Colors.Reset}
+{Colors.Bold}==================================================================={Colors.Reset}
 
      
      
@@ -172,7 +205,7 @@ Input:
     
     def display_loading_1(self):
                 print(f"""
-{Colors.Bold}================================================================={Colors.Reset}
+{Colors.Bold}==================================================================={Colors.Reset}
 
      
      
@@ -186,7 +219,7 @@ Input:
 
     def display_loading_2(self):
                 print(f"""
-{Colors.Bold}================================================================={Colors.Reset}  
+{Colors.Bold}==================================================================={Colors.Reset}  
 
      
      
@@ -200,7 +233,7 @@ Input:
 
     def display_loading_3(self):
                 print(f"""
-{Colors.Bold}================================================================={Colors.Reset}  
+{Colors.Bold}==================================================================={Colors.Reset}  
 
      
      
@@ -209,6 +242,6 @@ Input:
 
             
 
-=================================================================
+===================================================================
 """)
     
