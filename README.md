@@ -20,9 +20,9 @@ Main creates an instance of APP which handles all app related stuff.
 2. change the variable value of question_data with the same structure of that of difficulty.py (It's a  data table)
 3. You can add more ascii art in ascii_library.py
 4. Make sure that values in your modified array is the same structure as the one in difficulty.py so everything looks good. Heres the structure:
-# Structure
+### Structure
 - index, ASCII_Index, HintArray, PossibleAnswerArray, CorrectAnswerIndex
-# Example Usage 
+### Example Usage 
 - [["0", ascii_library.ascii_list[0], ["Yellow", "A fruit", "Filled with Pottatium"], ["Banana", "Apple", "Yellow Mango"], 0]]
 5. That's about it.
 
