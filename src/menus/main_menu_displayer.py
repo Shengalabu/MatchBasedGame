@@ -33,7 +33,7 @@ class MainMenu(TerminalDisplay):
     {f"Total Points: {Colors.Bold}{Colors.Green}{self.owner.total_points}{Colors.Reset}pts" if self.owner.total_points > 0 else ""}
     
     {f"Achievements:" if self.owner.total_points > 5 else ""}
-        {f"300pts  - {Colors.Bold}{Colors.BI_Yellow}🎓 LEARNER{Colors.Reset}" if self.owner.total_points > 300 else "👁️ Nothing to see here ❌" if self.owner.total_points > 5 else ""}
+        {f"300pts  - {Colors.Bold}{Colors.BI_Yellow}🎓 LEARNER{Colors.Reset}" if self.owner.total_points > 300 else " 👁️ Nothing to see here ❌" if self.owner.total_points > 5 else ""}
         {f"700pts  - {Colors.Bold}{Colors.BI_Red}💪 THE ALL KNOWING{Colors.Reset}" if self.owner.total_points > 700 else ""}    
         {f"1500pts - {Colors.Bold}{Colors.BI_Purple}☝️🤓 NERD{Colors.Reset}" if self.owner.total_points > 1500 else ""}    
         
