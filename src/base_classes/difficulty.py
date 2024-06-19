@@ -25,7 +25,7 @@ class Difficulty(Level):
                      ["5", ascii_library.ascii_list[5], ["Grows on Trees", "Keeps the Doctor Away", "Red or Green"], ["Orange", "Apple", "Banana"], 1],
                      ["6", ascii_library.ascii_list[6], ["Insects", "Pollinate Flowers", "Produce Honey"], ["Ant", "Butterfly", "Bee"], 2],
                      ["7", ascii_library.ascii_list[7], ["Has Big Ears", "Lives in Burrows", "Hops"], ["Kangaroo", "Rabbit", "Squirrel"], 1],
-                     ["8", ascii_library.ascii_list[8], ["Toy that Flies", "Controlled with Strings", "Often Seen in Parks"], ["Bird", "Plane", "Kite"], 2],
+                     ["8", ascii_library.ascii_list[8], ["Toy that Flies", "Controlled with Strings", "Often Seen in Parks"], ["Bird", "Plane", "Kite"], 1],
                      ["9", ascii_library.ascii_list[9], ["Has Feathers", "Can't Fly", "Largest Bird"], ["Penguin", "Ostrich", "Parrot"], 1],
                      ["10", ascii_library.ascii_list[10], ["Used for Telling Time", "Has Numbers", "Has Hands"], ["Clock", "Ruler", "Compass"], 0],
                      ["11", ascii_library.ascii_list[11], ["Sweet Desert", "Comes in Many Flavors", "Often Frozen"], ["Cake", "Ice Cream", "Cookies"], 1],
