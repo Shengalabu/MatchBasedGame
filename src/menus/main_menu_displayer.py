@@ -19,7 +19,7 @@ class MainMenu(TerminalDisplay):
 {Colors.Bold}==================================================================={Colors.Reset}
                                         
                                             
-                        {Colors.Bold}{Colors.Yellow}𝙼𝙰𝚃𝙲𝙷 𝙱𝙰𝚂𝙴𝙳 𝙶𝙰𝙼𝙴{Colors.Reset}           
+                        {Colors.Bold}{Colors.Yellow}HANS IS POGI{Colors.Reset}           
                                                 
                            1  -  Play                
                            2  -  Quit       
