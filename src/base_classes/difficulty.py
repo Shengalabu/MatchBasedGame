@@ -18,13 +18,26 @@ class Difficulty(Level):
     
     #index, ASCII_Index, HintArray, PossibleAnswerArray, CorrectAnswerIndex
     question_data = [["0", ascii_library.ascii_list[0], ["Yellow", "A fruit", "Filled with Pottatium"], ["Banana", "Apple", "Yellow Mango"], 0],
-                     ["1", ascii_library.ascii_list[1], ["Hot individual", "An Ogre", "Has a movie"], ["Puss In Boots", "Denji", "Shrek"], 2],
-                     ["2", ascii_library.ascii_list[2], ["From Among Us", "A Nice worker", "Not Sus"], ["Impostor", "Crewmate", "JoMama"], 1],
-                     ["3", ascii_library.ascii_list[3], ["From Minecraft", "Hisses at you", "Loves hugs"], ["Creeper", "Zombie", "Serpetine"], 0],
-                     ["4", ascii_library.ascii_list[4], ["Let yo bih", "Go through yo phone", "From Saw"], ["Oh Hell na", "Jigsaw", "You Trippin"], 1],
-                     ["5", ascii_library.ascii_list[5], ["From Japanese Game", "Mysterious creature", "青鬼"], ["Springtrap", "Ao Oni", "Bonny"], 1],
-                     ["6", ascii_library.ascii_list[6], ["From FNAF", "Kills Children", "Real name is William Afton"], ["Freddy", "Slenderman", "Springtrap"], 2],
-                     ["7", ascii_library.ascii_list[7], ["Used Everywhre", "Computes Everything", "Was Invented in 1822"], ["CPU", "System Unit", "Computer"], 2],
+                     ["1", ascii_library.ascii_list[1], ["Found in Ocean", "A mammal in water", "Their Group are called Pod"], ["Shark", "Nemo", "Dolphins"], 2],
+                     ["2", ascii_library.ascii_list[2], ["Has Feathers", "Quacks", "Swims"], ["Bird", "Duck", "Dog"], 1],
+                     ["3", ascii_library.ascii_list[3], ["Found at Night", "Natural light in the dark", "Neil Armstrong"], ["Moon", "Sun", "Earth"], 0],
+                     ["4", ascii_library.ascii_list[4], ["Has 2 Wheels", "Pedal to Move", "Used for Riding"], ["Shoes", "Bicycle", "Car"], 1],
+                     ["5", ascii_library.ascii_list[5], ["Grows on Trees", "Keeps the Doctor Away", "Red or Green"], ["Orange", "Apple", "Banana"], 1],
+                     ["6", ascii_library.ascii_list[6], ["Insects", "Pollinate Flowers", "Produce Honey"], ["Ant", "Butterfly", "Bee"], 2],
+                     ["7", ascii_library.ascii_list[7], ["Has Big Ears", "Lives in Burrows", "Hops"], ["Kangaroo", "Rabbit", "Squirrel"], 1],
+                     ["8", ascii_library.ascii_list[8], ["Toy that Flies", "Controlled with Strings", "Often Seen in Parks"], ["Bird", "Plane", "Kite"], 2],
+                     ["9", ascii_library.ascii_list[9], ["Has Feathers", "Can't Fly", "Largest Bird"], ["Penguin", "Ostrich", "Parrot"], 1],
+                     ["10", ascii_library.ascii_list[10], ["Used for Telling Time", "Has Numbers", "Has Hands"], ["Clock", "Ruler", "Compass"], 0],
+                     ["11", ascii_library.ascii_list[11], ["Sweet Desert", "Comes in Many Flavors", "Often Frozen"], ["Cake", "Ice Cream", "Cookies"], 1],
+                     ["12", ascii_library.ascii_list[12], ["Part of the Body", "Used for Hearing", "Comes in Pairs"], ["Eyes", "Ears", "Nose"], 1],
+                     ["13", ascii_library.ascii_list[13], ["Used for School", "Writes with Ink", "Has a Cap"], ["Pen", "Pencil", "Crayon"], 0],
+                     ["14", ascii_library.ascii_list[14], ["Lives in Water", "Has Scales", "Breathes with Gills"], ["Octopus", "Shark", "Fish"], 2],
+                     ["15", ascii_library.ascii_list[15], ["Small and Orange", "Good Source of Vitamin C", "Often Peeled"], ["Grapefruit", "Tangerine", "Kiwi"], 1],
+                     ["16", ascii_library.ascii_list[16], ["Large Fruit", "Has Stripes", "Juicy and Sweet"], ["Watermelon", "Strawberry", "Grapes"], 0],
+                     ["17", ascii_library.ascii_list[17], ["Raisins", "Produce Wine", "Small fruit"], ["Peas", "Mango", "Grapes"], 2],
+                     ["18", ascii_library.ascii_list[18], ["Black and white", "Bird", "Lives in cold climates"], ["Penguin", "Maya", "Seal"], 0],
+                     ["19", ascii_library.ascii_list[19], ["Hard shell covering its body", "Moves slowly on land", "Reptile"], ["Clown Fish", "Turtle", "Squirtel"], 1],
+                     ["20", ascii_library.ascii_list[20], ["Filled with helium or air", "For Decoration", "Kids Toy"], ["Ball", "Kite", "Balloon"], 1],
                     ]
     
     def __init__(self, owner):
