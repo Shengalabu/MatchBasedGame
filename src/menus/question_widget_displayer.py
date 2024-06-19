@@ -86,6 +86,7 @@ Input:
             
     def display_correct(self):
         self.clear_console()
+        self.current_tries = 2
         print("""
 }==================================================================={  
 
