@@ -37,7 +37,7 @@ class Difficulty(Level):
                      ["17", ascii_library.ascii_list[17], ["Raisins", "Produce Wine", "Small fruit"], ["Peas", "Mango", "Grapes"], 2],
                      ["18", ascii_library.ascii_list[18], ["Black and white", "Bird", "Lives in cold climates"], ["Penguin", "Maya", "Seal"], 0],
                      ["19", ascii_library.ascii_list[19], ["Hard shell covering its body", "Moves slowly on land", "Reptile"], ["Clown Fish", "Turtle", "Squirtel"], 1],
-                     ["20", ascii_library.ascii_list[20], ["Filled with helium or air", "For Decoration", "Kids Toy"], ["Ball", "Kite", "Balloon"], 1],
+                     ["20", ascii_library.ascii_list[20], ["Filled with helium or air", "For Decoration", "Kids Toy"], ["Ball", "Kite", "Balloon"], 2],
                     ]
     
     def __init__(self, owner):
